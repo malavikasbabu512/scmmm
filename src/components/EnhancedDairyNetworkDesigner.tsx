@@ -10,6 +10,8 @@ import { InteractiveNetworkMap } from './InteractiveNetworkMap';
 import { EssentialNetworkMetrics } from './EssentialNetworkMetrics';
 import { EnhancedDataImportExport } from './EnhancedDataImportExport';
 import { RealTimeMetrics } from './RealTimeMetrics';
+import { NetworkTopologyVisualization } from './NetworkTopologyVisualization';
+import { AdvancedNetworkTopology } from './AdvancedNetworkTopology';
 import { 
   Network, 
   BarChart3, 
@@ -17,7 +19,9 @@ import {
   Map,
   CheckCircle,
   Info,
-  CloudSun
+  CloudSun,
+  GitBranch,
+  Workflow
 } from 'lucide-react';
 
 export function EnhancedDairyNetworkDesigner() {
@@ -135,10 +139,18 @@ export function EnhancedDairyNetworkDesigner() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="network" className="flex items-center gap-2">
             <Map className="h-4 w-4" />
-            Interactive Network Design
+            Network Design
+          </TabsTrigger>
+          <TabsTrigger value="topology" className="flex items-center gap-2">
+            <GitBranch className="h-4 w-4" />
+            Basic Topology
+          </TabsTrigger>
+          <TabsTrigger value="advanced-topology" className="flex items-center gap-2">
+            <Workflow className="h-4 w-4" />
+            Advanced Canvas
           </TabsTrigger>
           <TabsTrigger value="analytics" className="flex items-center gap-2">
             <BarChart3 className="h-4 w-4" />
@@ -156,6 +168,20 @@ export function EnhancedDairyNetworkDesigner() {
             onProductsChange={setSelectedProducts}
             selectedVehicles={selectedVehicles}
             onVehiclesChange={setSelectedVehicles}
+          />
+        </TabsContent>
+
+        <TabsContent value="topology" className="space-y-4">
+          <NetworkTopologyVisualization
+            nodes={nodes}
+            routes={routes}
+          />
+        </TabsContent>
+
+        <TabsContent value="advanced-topology" className="space-y-4">
+          <AdvancedNetworkTopology
+            nodes={nodes}
+            routes={routes}
           />
         </TabsContent>
 
